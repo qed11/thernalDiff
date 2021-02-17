@@ -1,0 +1,15 @@
+###############################################################
+## Measurements of diameter of rubber tubing at 5 points	  #
+## rougly evenly spaces from below the water line to the tip  #
+## measurements given in mm                                   #
+###############################################################
+16.21
+16.17
+15.98
+16.07
+15.89
+
+###############################################################
+## Diameter of inner thermometer in mm                        #
+###############################################################
+6.47
