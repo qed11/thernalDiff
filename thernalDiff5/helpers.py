@@ -19,3 +19,21 @@ def reader(filename:str):
             continue
     return np.asarray(time), np.asarray(temp)
 
+def square_wave(start_cold, start_hot, period, start:bool, domain_endtime:int):
+    time = np.arange(domain_endtime+1)
+    sqr = np.arange(domain_endtime+1)
+    diff = start_hot - start_cold
+    count = 0
+    for i in range(len(sqr)):
+        if count == period:
+            count = 0
+            if start == 1:
+                start = 0
+            else:
+                start = 1
+        sqr[i] = start_cold + start * diff
+        count += 1
+    return time, sqr
+        
+
+    
