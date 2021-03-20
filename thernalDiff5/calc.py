@@ -18,6 +18,7 @@ def get_intersect(result,exp,i):
     #get interseciton of our values to the graph
     lol = abs(exp[i]-result)
     #print(np.amin(five_min))
+    print("min val",np.amin(lol))
     index = np.where(lol == np.amin(lol))
     return index[0][0]
 
@@ -42,6 +43,10 @@ if __name__ == '__main__':
     #get x value
 
     plt.scatter(x,result[index]) #validate on plot
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('Kelvin Equation illustrated')
+    plt.legend(('Kelvin Equation','tan(phi)'))
     plt.show()
 
     #calculate m
