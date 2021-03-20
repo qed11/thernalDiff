@@ -42,11 +42,25 @@ if __name__ == '__main__':
     #get x value
 
     plt.scatter(x,result[index]) #validate on plot
-    plt.show()
+    
 
     #calculate m
     m = omega*(9.594/2/x)**2
     print(m)
     m_bar = np.mean(m)
     print('m vals',m_bar)
+
+    err_domain = np.linspace(1, 1.3, 500)
+
+    coeffs = np.polyfit(err_domain, fnc.bei(err_domain)/fnc.ber(err_domain), deg=2)
+    print("coeffs: ", coeffs)
     
+    def quadfit(x): return coeffs[0] * x ** 2 + coeffs[1] * x + coeffs[2]
+
+    plt.plot(a, quadfit(a))
+    
+    L1_err = fnc.bei(err_domain)/fnc.ber(err_domain) - quadfit(err_domain)
+    L1_err = np.abs(L1_err)
+    L1_err_val = np.mean(L1_err)
+    print("L1 error:", L1_err_val)
+    plt.show()
