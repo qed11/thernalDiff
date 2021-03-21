@@ -18,7 +18,7 @@ def get_intersect(result,exp,i):
     #get interseciton of our values to the graph
     lol = abs(exp[i]-result)
     #print(np.amin(five_min))
-    print("min val",np.amin(lol))
+    #print("min val",np.amin(lol))
     index = np.where(lol == np.amin(lol))
     return index[0][0]
 
@@ -57,8 +57,9 @@ if __name__ == '__main__':
 
     #calculate m
     m = omega*(9.594/2/x)**2
-    print(m)
+    print('m collection:',m)
     m_bar = np.mean(m)
+
     print('m vals',m_bar)
 
     # phase plot of 
