@@ -24,17 +24,16 @@ def get_intersect(result,exp,i):
 
 if __name__ == '__main__':
     data = read('thernalDiff5\phaseDiff.txt')
-    print('angle diff:',-2*np.pi*data/times)
-    ratio = np.tan(-2*np.pi*data/times) #tan(phi)
-    print("phase diff:",ratio)
+    phi = data / times * 2 * np.pi * -1
+    print("phi is", phi)
+    ratio = np.tan(phi) #tan(phi)
+    print(ratio)
 
-    a = np.linspace(0,np.pi,10001)
-    plt.ylim(-10,10)
-    print('a values',a)
+    a = np.linspace(0,3,100000)
     result = fnc.bei(a)/fnc.ber(a) #the bernoulli equations
 
     plt.plot(a,result)
-    
+    plt.ylim(-10, 10)
     index = []
 
     for i in range(len(ratio)):
@@ -56,5 +55,26 @@ if __name__ == '__main__':
     m = omega*(9.594/2/x)**2
     print('m collection:',m)
     m_bar = np.mean(m)
-    print('m bar',m_bar)
+
+    print('m vals',m_bar)
+
+    # phase plot of 
+    t = np.linspace(0, 10, 10000)
+    plt.plot(t, np.angle(fnc.ber(t) + 1j * fnc.bei(t)))
+    plt.show()
+    '''
+    err_domain = np.linspace(1, 1.3, 500)
+
+    coeffs = np.polyfit(err_domain, fnc.bei(err_domain)/fnc.ber(err_domain), deg=2)
+    print("coeffs: ", coeffs)
     
+    def quadfit(x): return coeffs[0] * x ** 2 + coeffs[1] * x + coeffs[2]
+
+    plt.plot(a, quadfit(a))
+    
+    L1_err = fnc.bei(err_domain)/fnc.ber(err_domain) - quadfit(err_domain)
+    L1_err = np.abs(L1_err)
+    L1_err_val = np.mean(L1_err)
+    print("L1 error:", L1_err_val)
+    plt.show()
+    '''
