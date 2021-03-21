@@ -24,14 +24,16 @@ def get_intersect(result,exp,i):
 
 if __name__ == '__main__':
     data = read('thernalDiff5\phaseDiff.txt')
-    ratio = np.tan(data/times) #tan(phi)
-    #print(ratio)
+    phi = data / times * 2 * np.pi * -1
+    print("phi is", phi)
+    ratio = np.tan(phi) #tan(phi)
+    print(ratio)
 
-    a = np.linspace(0,1.5,1001)
+    a = np.linspace(0,3,100000)
     result = fnc.bei(a)/fnc.ber(a) #the bernoulli equations
 
     plt.plot(a,result)
-    
+    plt.ylim(-10, 10)
     index = []
 
     for i in range(len(ratio)):
@@ -55,6 +57,11 @@ if __name__ == '__main__':
     m_bar = np.mean(m)
     print('m vals',m_bar)
 
+    # phase plot of 
+    t = np.linspace(0, 10, 10000)
+    plt.plot(t, np.angle(fnc.ber(t) + 1j * fnc.bei(t)))
+    plt.show()
+    '''
     err_domain = np.linspace(1, 1.3, 500)
 
     coeffs = np.polyfit(err_domain, fnc.bei(err_domain)/fnc.ber(err_domain), deg=2)
@@ -69,3 +76,4 @@ if __name__ == '__main__':
     L1_err_val = np.mean(L1_err)
     print("L1 error:", L1_err_val)
     plt.show()
+    '''
