@@ -45,10 +45,14 @@ if __name__ == '__main__':
     #get x value
 
     plt.scatter(x,result[index]) #validate on plot
+    a = np.linspace(0,10,100000)
+    result = fnc.bei(a)/fnc.ber(a) #the bernoulli equations
+
+    plt.plot(a,result)
     plt.xlabel('x')
     plt.ylabel('y')
     plt.title('Kelvin Equation illustrated')
-    plt.legend(('Kelvin Equation','tan(phi)'))
+    plt.legend(('tan(phi)', 'Kelvin Equation'))
     plt.show()
 
     #calculate m
@@ -60,6 +64,19 @@ if __name__ == '__main__':
     # phase plot of 
     t = np.linspace(0, 10, 10000)
     plt.plot(t, np.angle(fnc.ber(t) + 1j * fnc.bei(t)))
+    
+    plt.xlabel('x')
+    plt.ylabel('phi(x)')
+    plt.title('Phase angle of J_0')
+    plt.show()
+
+    t = np.linspace(0, 10, 10000)
+    plt.plot(t, fnc.ber(t))
+    plt.plot(t, fnc.bei(t))
+    plt.xlabel('x')
+    plt.ylabel('f(x)')
+    plt.title('Plot of ber(x) and bei(x) for Real Values of x')
+    plt.legend(('ber(x)', 'bei(x)'))
     plt.show()
     '''
     err_domain = np.linspace(1, 1.3, 500)
