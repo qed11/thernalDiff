@@ -18,16 +18,19 @@ def get_intersect(result,exp,i):
     #get interseciton of our values to the graph
     lol = abs(exp[i]-result)
     #print(np.amin(five_min))
-    print("min val",np.amin(lol))
+    #print("min val",np.amin(lol))
     index = np.where(lol == np.amin(lol))
     return index[0][0]
 
 if __name__ == '__main__':
     data = read('thernalDiff5\phaseDiff.txt')
-    ratio = np.tan(data/times) #tan(phi)
-    #print(ratio)
+    print('angle diff:',-2*np.pi*data/times)
+    ratio = np.tan(-2*np.pi*data/times) #tan(phi)
+    print("phase diff:",ratio)
 
-    a = np.linspace(0,1.5,1001)
+    a = np.linspace(0,np.pi,10001)
+    plt.ylim(-10,10)
+    print('a values',a)
     result = fnc.bei(a)/fnc.ber(a) #the bernoulli equations
 
     plt.plot(a,result)
@@ -51,7 +54,7 @@ if __name__ == '__main__':
 
     #calculate m
     m = omega*(9.594/2/x)**2
-    print(m)
+    print('m collection:',m)
     m_bar = np.mean(m)
-    print('m vals',m_bar)
+    print('m bar',m_bar)
     
